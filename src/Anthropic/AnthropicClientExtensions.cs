@@ -763,8 +763,9 @@ public static class AnthropicClientExtensions
                                         sf.Value.Arguments.ToString(),
                                         sf.Value.CallId,
                                         sf.Value.Name,
-                                        json =>
-                                            (Dictionary<string, object?>?)
+                                        json => json == string.Empty
+                                            ? null
+                                            : (Dictionary<string, object?>?)
                                                 JsonSerializer.Deserialize(
                                                     json,
                                                     AIJsonUtilities.DefaultOptions.GetTypeInfo(
