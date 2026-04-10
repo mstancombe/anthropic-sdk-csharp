@@ -1926,8 +1926,9 @@ public static class AnthropicClientExtensions
                     functionData.Arguments.ToString(),
                     functionData.CallId,
                     functionData.Name,
-                    json =>
-                        (Dictionary<string, object?>?)
+                    json => json.Length == 0 
+                        ? null 
+                        : (Dictionary<string, object?>?)
                             JsonSerializer.Deserialize(
                                 json,
                                 AIJsonUtilities.DefaultOptions.GetTypeInfo(
